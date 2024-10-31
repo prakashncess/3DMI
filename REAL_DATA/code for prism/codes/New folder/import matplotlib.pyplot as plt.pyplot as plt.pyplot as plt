@@ -1,0 +1,46 @@
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d.art3d import Poly3DCollection
+
+# Define the coordinates for the vertices of the prism
+extension = 2.5  # km
+width = 2  # km
+top = 0.55  # km
+base = 2.5  # km
+
+vertices = [
+    (0, 0, 0),
+    (width, 0, 0),
+    (width, extension, 0),
+    (0, extension, 0),
+    (0, 0, top),
+    (width, 0, top),
+    (width, extension, top),
+    (0, extension, top)
+]
+
+# Define the faces (sides) of the prism using the vertices
+faces = [
+    [vertices[0], vertices[1], vertices[5], vertices[4]],
+    [vertices[1], vertices[2], vertices[6], vertices[5]],
+    [vertices[2], vertices[3], vertices[7], vertices[6]],
+    [vertices[3], vertices[0], vertices[4], vertices[7]],
+    [vertices[0], vertices[1], vertices[2], vertices[3]],  # Base
+    [vertices[4], vertices[5], vertices[6], vertices[7]]   # Top
+]
+
+# Plot the prism
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+
+ax.add_collection3d(Poly3DCollection(faces, facecolors='cyan', linewidths=1, edgecolors='black'))
+ax.set_xlabel('Width (km)')
+ax.set_ylabel('Extension (km)')
+ax.set_zlabel('Height (km)')
+ax.set_title('3D Prism')
+
+plt.show()
+
+
+
+
+
